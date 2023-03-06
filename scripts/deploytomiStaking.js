@@ -12,16 +12,16 @@ async function verify(address, constructorArguments) {
 
 async function main() {
 
-  const FxStateChildTunnel = await ethers.getContractFactory(
-    "FxStateChildTunnel"
+  const tomiStaking = await ethers.getContractFactory(
+    "tomiStaking"
   );
-  console.log("Deploying FxStateChildTunnel...");
-  const contract = await upgrades.deployProxy(FxStateChildTunnel, [], {
+  console.log("Deploying tomiStaking...");
+  const contract = await upgrades.deployProxy(tomiStaking, [], {
     initializer: "initialize",
     kind: "transparent",
   });
   await contract.deployed();
-  console.log("FxStateChildTunnel deployed to:", contract.address);
+  console.log("tomiStaking deployed to:", contract.address);
 
   await new Promise(resolve => setTimeout(resolve, 40000));
   verify(contract.address, [])

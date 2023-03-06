@@ -12,17 +12,17 @@ async function verify(address, constructorArguments) {
 }
 
 async function main() {
-  const tomiStaking = await ethers.getContractFactory(
-    "tomiStaking"
+  const PioneerNFT = await ethers.getContractFactory(
+    "PioneerNFT"
   );
-  console.log("Deploying tomiStaking...");
+  console.log("Deploying PioneerNFT...");
 
-  const contract = await tomiStaking.deploy("0x3a06cF44DFC0010350F4F6F339d01a6f258AD9D0");
+  const contract = await PioneerNFT.deploy();
   await contract.deployed();
-  console.log("tomiStaking deployed to:", contract.address);
+  console.log("PioneerNFT deployed to:", contract.address);
 
   await new Promise(resolve => setTimeout(resolve, 40000));
-  verify(contract.address, ["0x3a06cF44DFC0010350F4F6F339d01a6f258AD9D0"])
+  verify(contract.address, [])
 }
 
 main();

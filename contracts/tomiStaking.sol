@@ -55,11 +55,11 @@ contract tomiStaking is Initializable{
     event unStakeForPioneer(address unStaker, uint unStakeTime ,uint unStakeIndex,uint unStakeAmount);
 
 
-    function initialize ( IERC20 _tomi , uint _stakesForPioneerDuration, IPioneerNFT _PioneerNFT , IMiniPioneerNFT _MiniPioneerNFT ) public initializer{
+    function initialize ( uint _stakesForPioneerDuration, IPioneerNFT _PioneerNFT , IMiniPioneerNFT _MiniPioneerNFT ) public initializer{
         stakeperiod= [6,12,24];
         stakeApy= [6,8,10]; // multiply by 10**18
         tomiTokenStakesAmount= [180 ether, 18000 ether];
-        tomi= _tomi;
+        tomi= IERC20(0x3F28F5C870dD87c988711032E2750D0f1408AE6a);
         stakesForPioneerDuration=_stakesForPioneerDuration;
         PioneerNFT= _PioneerNFT;
         MiniPioneerNFT = _MiniPioneerNFT;
