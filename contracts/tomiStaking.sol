@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "./ABDKMath64x64.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-// import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 
 interface IPioneerNFT{
@@ -15,7 +15,7 @@ interface IMiniPioneerNFT{
     function mint(address to) external;
 
 }
-contract tomiStaking {
+contract tomiStaking is Initializable {
     // variables
     uint public stakesForPioneerDuration;
     uint public timeInSeconds;
@@ -56,14 +56,14 @@ contract tomiStaking {
     event unStakeForPioneer(address unStaker, uint unStakeTime ,uint unStakeIndex,uint unStakeAmount);
 
 
-      constructor ( IERC20 _tomi , address _PIONEERNFT,IMiniPioneerNFT _miniPioneer )    {
+      function initialize ( IERC20 _tomi , address _pioneerNft , IMiniPioneerNFT _miniPioneer ) public initializer  {
 
         stakeperiod= [6,12,24];
         stakeApy= [6,8,10];  
         tomiTokenStakesAmount= [180 ether, 18000 ether];
         tomi= _tomi ;
         stakesForPioneerDuration=12;
-        PioneerNFT= IPioneerNFT(_PIONEERNFT);
+        PioneerNFT= IPioneerNFT(_pioneerNft);
         MiniPioneerNFT = _miniPioneer;
         timeInSeconds = 60;
     }

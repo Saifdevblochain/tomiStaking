@@ -10,13 +10,13 @@ async function verify(address, constructorArguments) {
 }
 
 async function main() {
-  const PioneerNFT_ = await ethers.getContractFactory("miniPioneerNFT");
+  const PioneerNFT_ = await ethers.getContractFactory("PioneerNFT");
   const PioneerNFT = await PioneerNFT_.deploy();
   await PioneerNFT.deployed();
 
   console.log(`PioneerNFT deployed to ${PioneerNFT.address}`);
 
-  await new Promise(resolve => setTimeout(resolve, 20000));
+  await new Promise(resolve => setTimeout(resolve, 40000));
   verify(PioneerNFT.address, []);
 }
 
