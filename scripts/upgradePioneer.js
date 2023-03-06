@@ -1,13 +1,13 @@
 const { ethers, upgrades } = require("hardhat");
 
 async function main() {
-  const PioneerNFT = await ethers.getContractFactory(
-    "PioneerNFT"
+  const tomiStaking = await ethers.getContractFactory(
+    "tomiStaking"
   );
-  console.log("Upgrading PioneerNFT...");
+  console.log("Upgrading tomiStaking...");
   await upgrades.upgradeProxy(
-    "0x79E79Fb59E612AFd801D5D2d74F67Ff6F10d9f14", // old address
-    PioneerNFT
+    "0x5F9F0a1746371a3747c77Da7E7d6f46DA2390A3b", // old address
+    tomiStaking
   );
   console.log("Upgraded Successfully");
 }

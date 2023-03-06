@@ -1,7 +1,5 @@
 const { ethers } = require("hardhat");
-
 const { network, run } = require("hardhat");
-const { Contract } = require("hardhat/internal/hardhat-network/stack-traces/model");
 
 async function verify(address, constructorArguments) {
   console.log(`verify  ${address} with arguments ${constructorArguments.join(',')}`)
@@ -12,17 +10,19 @@ async function verify(address, constructorArguments) {
 }
 
 async function main() {
-  const PioneerNFT = await ethers.getContractFactory(
-    "PioneerNFT"
-  );
-  console.log("Deploying PioneerNFT...");
+  const PioneerNFT_ = await ethers.getContractFactory("miniPioneerNFT");
+  const PioneerNFT = await PioneerNFT_.deploy();
+  await PioneerNFT.deployed();
 
-  const contract = await PioneerNFT.deploy();
-  await contract.deployed();
-  console.log("PioneerNFT deployed to:", contract.address);
+  console.log(`PioneerNFT deployed to ${PioneerNFT.address}`);
 
-  await new Promise(resolve => setTimeout(resolve, 40000));
-  verify(contract.address, [])
+  await new Promise(resolve => setTimeout(resolve, 20000));
+  verify(PioneerNFT.address, []);
 }
 
-main();
+// We recommend this pattern to be able to use async/await everywhere
+// and properly handle errors.
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});

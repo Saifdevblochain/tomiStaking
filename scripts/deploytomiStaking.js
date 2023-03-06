@@ -12,19 +12,19 @@ async function verify(address, constructorArguments) {
 
 async function main() {
 
-  const tomiStaking = await ethers.getContractFactory(
-    "tomiStaking"
-  );
-  console.log("Deploying tomiStaking...");
-  const contract = await upgrades.deployProxy(tomiStaking, [], {
-    initializer: "initialize",
-    kind: "transparent",
-  });
-  await contract.deployed();
-  console.log("tomiStaking deployed to:", contract.address);
+  // const tomiStaking = await ethers.getContractFactory(
+  //   "tomiStaking"
+  // );
+  // console.log("Deploying tomiStaking...");
+  // const contract = await upgrades.deployProxy(tomiStaking, [], {
+  //   initializer: "initialize",
+  //   kind: "transparent",
+  // });
+  // await contract.deployed();
+  // console.log("tomiStaking deployed to:", contract.address);
 
   await new Promise(resolve => setTimeout(resolve, 40000));
-  verify(contract.address, [])
+  verify("0x7F0dc60FC01DAA53dc60FCdE01fd091ABe4db8c6", [])
 }
 
 main();
